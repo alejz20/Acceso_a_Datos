@@ -1,0 +1,67 @@
+package org.alejandra.ficheros;
+
+/**
+ * Clase de variables que llamaremos para calcular el promedio de las temperaturas
+ */
+public class CityData {
+
+	private String id;
+	private String name;
+	private double maxTempSum = 0;
+	private double minTempSum = 0;
+	private double humiditySum = 0;
+	private double pressureSum = 0;
+	private int tempCount = 0;
+	private int humidityCount = 0;
+	private int pressureCount = 0;
+
+	public CityData(String id , String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	public void addTemperature(double maxTemp, double minTemp) {
+		this.maxTempSum += maxTemp;
+		this.minTempSum += minTemp;
+		this.tempCount += 2; // Contamos tanto la temperatura máxima como la mínima
+	}
+
+	public void addHumidity(double humidity) {
+		this.humiditySum += humidity;
+		this.humidityCount++;
+	}
+
+	public void addPressure(double pressure) {
+		this.pressureSum += pressure;
+		this.pressureCount++;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+	public double getAvgMaxTemp() {
+		return maxTempSum / (tempCount / 2);
+	}
+
+	public double getAvgMinTemp() {
+		return minTempSum / (tempCount / 2);
+	}
+
+	public double getAvgTemp() {
+		return (maxTempSum + minTempSum) / tempCount;
+	}
+
+	public double getAvgHumidity() {
+		return humiditySum / humidityCount;
+	}
+
+	public double getAvgPressure() {
+		return pressureSum / pressureCount;
+	}
+}
